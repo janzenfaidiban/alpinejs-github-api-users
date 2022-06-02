@@ -1,0 +1,85 @@
+<html>
+
+<head>
+    <title>Alpinejs GitHub API Users</title>
+
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <!-- Style css -->
+    <link rel="stylesheet" href="https://sacode.web.id/assets/css/style.css">
+
+</head>
+
+<body class="py-5">
+
+    <div class="container">
+
+        <h1 class="my-3">Alpinejs GitHub API Users</h1>
+
+
+        <div class="row" x-data="postData()" x-init="init()">
+
+            <template x-for="user in users" :key="user.id">
+
+                <!-- start nick -->
+                <div class="col-12 col-md-6 col-lg-4 mb-5 res-margin">
+                    <!-- Single Review -->
+                    <div class="single-review card">
+                        <!-- Reviewer -->
+                        <div class="reviewer media bg-gray p-4">
+                            <!-- Reviewer Thumb -->
+                            <div class="reviewer-thumb">
+                                <img class="avatar-lg radius-100" :src="user.avatar_url" alt="">
+                            </div>
+                            <!-- Reviewer Media -->
+                            <div class="reviewer-meta media-body align-self-center ml-4">
+                                <a :href="user.html_url" class="badge p-2" target="_blank">
+                                    <h4 class="text-primary mt-4 mb-3" x-text="user.login"></h4>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end nick -->
+
+            </template>
+
+        </div>
+    </div>
+
+
+    <script>
+        function postData() {
+            return {
+                users: [],
+                init() {
+                    fetch("https://api.github.com/users")
+                        .then(response => response.json())
+                        .then(data => this.users = data)
+                }
+            }
+        }
+    </script>
+
+
+
+
+    <!-- ***** All jQuery Plugins ***** -->
+
+    <!-- jQuery(necessary for all JavaScript plugins) -->
+    <script src="https://sacode.web.id/assets/js/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="https://sacode.web.id/assets/js/bootstrap/popper.min.js"></script>
+    <script src="https://sacode.web.id/assets/js/bootstrap/bootstrap.min.js"></script>
+
+    <!-- Plugins js -->
+    <script src="https://sacode.web.id/assets/js/plugins/plugins.min.js"></script>
+
+    <!-- Active js -->
+    <script src="https://sacode.web.id/assets/js/active.js"></script>
+
+
+</body>
+
+</html>
